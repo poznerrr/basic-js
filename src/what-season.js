@@ -15,7 +15,16 @@ function getSeason(date) {
   if (!date) {
     return 'Unable to determine the time of year!';
   }
-  if (isNaN(Date.parse(date))) {
+  if (!date) {
+    return 'Unable to determine the time of year!';
+  }
+  try {
+    if (isNaN(Date.parse(date)) || date === null || !!!date) {
+      throw Error("Invalid date!");
+    }
+    date.valueOf();
+  }
+  catch {
     throw Error("Invalid date!");
   }
 
